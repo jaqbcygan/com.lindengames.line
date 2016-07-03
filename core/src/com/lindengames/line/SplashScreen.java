@@ -41,23 +41,23 @@ public class SplashScreen implements Screen {
 
         fontGenerator = new FreeTypeFontGenerator((Gdx.files.internal("hack.ttf")));
         fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        fontParameter.size = 25;
-        fontParameter.color = Color.BLACK;
+        fontParameter.size = 35;
+        fontParameter.color = new Color(.75f, .75f, .75f, 1);
         hack25 = fontGenerator.generateFont(fontParameter);
 
         stage = new Stage(viewport);
         Table table = new Table();
+        table.setPosition(stage.getViewport().getScreenX() / 2, stage.getViewport().getScreenY() / 2 );
         Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
-        skin.add("default-font", hack25, BitmapFont.class);
+
         Gdx.input.setInputProcessor(stage);
 
         table.setFillParent(true);
         stage.addActor(table);
 
-        table.setDebug(true);
-
         Image logo = new Image(img);
-        Label splashText = new Label("Linden Games", skin);
+        skin.add("hack25", hack25);
+        Label splashText = new Label("Linden Games", skin, "hack25", new Color(.40f, .40f, .40f, 1));
 
         table.add(logo);
         table.row();
@@ -74,15 +74,13 @@ public class SplashScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 1, 1, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        camera.update();
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
     }
 
     @Override
     public void resize(int width, int height) {
-        viewport.update(width, height);
-        stage.getViewport().update(width, height);
+        stage.getViewport().update(width, height, true);
     }
 
     @Override
