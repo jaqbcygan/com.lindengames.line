@@ -1,5 +1,6 @@
 package com.lindengames.line;
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -9,10 +10,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.utils.Timer.Task;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -20,9 +24,15 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 public class SplashScreen implements Screen {
 
     private LineGame game;
+
     private Stage stage;
     private Texture img;
-    private BitmapFont hack25;
+    private BitmapFont roboto40;
+
+    Actions actions;
+
+    private Timer timer;
+    private Task task;
 
     private OrthographicCamera camera;
     private Viewport viewport;
@@ -39,11 +49,10 @@ public class SplashScreen implements Screen {
         FreeTypeFontGenerator fontGenerator;
         FreeTypeFontGenerator.FreeTypeFontParameter fontParameter;
 
-        fontGenerator = new FreeTypeFontGenerator((Gdx.files.internal("hack.ttf")));
+        fontGenerator = new FreeTypeFontGenerator((Gdx.files.internal("roboto.ttf")));
         fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        fontParameter.size = 35;
-        fontParameter.color = new Color(.75f, .75f, .75f, 1);
-        hack25 = fontGenerator.generateFont(fontParameter);
+        fontParameter.size = 40;
+        roboto40 = fontGenerator.generateFont(fontParameter);
 
         stage = new Stage(viewport);
         Table table = new Table();
@@ -56,13 +65,23 @@ public class SplashScreen implements Screen {
         stage.addActor(table);
 
         Image logo = new Image(img);
-        skin.add("hack25", hack25);
-        Label splashText = new Label("Linden Games", skin, "hack25", new Color(.40f, .40f, .40f, 1));
+        skin.add("roboto40", roboto40);
+        Label splashText = new Label("Linden Games", skin, "roboto40", new Color(.40f, .40f, .40f, 1));
 
         table.add(logo);
         table.row();
         table.add(splashText);
 
+        stage.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(1)));
+
+        timer = new Timer();
+        task = new Task() {
+            @Override
+            public void run() {
+                stage.addAction(Actions.sequence(Actions.alpha(1), Actions.fadeOut(1)));
+            }
+        };
+        timer.scheduleTask(task, 2.5f);
     }
 
     @Override
@@ -74,8 +93,10 @@ public class SplashScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 1, 1, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
+
     }
 
     @Override
