@@ -9,7 +9,6 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.lindengames.line.LineGame;
 
-
 public abstract class ScreenAdapter implements Screen {
 
     OrthographicCamera camera;
@@ -34,7 +33,7 @@ public abstract class ScreenAdapter implements Screen {
         Gdx.gl.glClearColor(1, 1, 1, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 45f));
         stage.draw();
 
     }

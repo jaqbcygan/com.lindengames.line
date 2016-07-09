@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
+import com.lindengames.line.LineGame;
 import com.lindengames.line.utilities.Constants;
 
 public class SplashScreen extends ScreenAdapter {
@@ -16,7 +17,11 @@ public class SplashScreen extends ScreenAdapter {
     private Timer timer;
     private Task task;
 
-    public SplashScreen(){
+    final LineGame game;
+
+    public SplashScreen(final LineGame game){
+        this.game = game;
+
         img = new Texture("logo_100.png");
 
         Table table = new Table();
@@ -31,17 +36,23 @@ public class SplashScreen extends ScreenAdapter {
         table.row();
         table.add(splashText);
 
-        stage.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(1)));
+        stage.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(Constants.FADING_TIME)));
+
         timer = new Timer();
         task = new Task() {
             @Override
             public void run() {
-                stage.addAction(Actions.sequence(Actions.alpha(1), Actions.fadeOut(1)));
-                Constants.GAME.setScreen(new MainMenuScreen());
+                stage.addAction(Actions.sequence(Actions.alpha(1), Actions.fadeOut(Constants.FADING_TIME)));
+                timer.scheduleTask(new Task() {
+                    @Override
+                    public void run() {
+                        game.setScreen(new MainMenuScreen(game));
+                    }
+                }, Constants.FADING_TIME);
+                // Fading time
             }
         };
         timer.scheduleTask(task, 2.5f);
-
     }
 
     @Override

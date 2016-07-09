@@ -24,7 +24,7 @@ public class LineGame extends Game {
 	public void create() {
 		batch = new SpriteBatch();
 		Constants.SKIN.add("roboto40", createRoboto40Font());
-		setScreen(new SplashScreen());
+		setScreen(new SplashScreen(this));
 	}
 
 	@Override
