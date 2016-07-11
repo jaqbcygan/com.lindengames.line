@@ -24,6 +24,7 @@ public class LineGame extends Game {
 	public void create() {
 		batch = new SpriteBatch();
 		Constants.SKIN.add("roboto40", createRoboto40Font());
+		Constants.SKIN.add("roboto75", createRoboto75Font());
 		setScreen(new SplashScreen(this));
 	}
 
@@ -58,13 +59,19 @@ public class LineGame extends Game {
 	}
 
 	public BitmapFont createRoboto40Font() {
-
 		BitmapFont roboto40 = null;
 		FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator((Gdx.files.internal("roboto.ttf")));
 		FreeTypeFontParameter fontParameter = new FreeTypeFontParameter();
 		fontParameter.size = 40;
 		roboto40 = fontGenerator.generateFont(fontParameter);
 		return roboto40;
-
+	}
+	public BitmapFont createRoboto75Font() {
+		BitmapFont roboto75 = null;
+		FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator((Gdx.files.internal("roboto.ttf")));
+		FreeTypeFontParameter fontParameter = new FreeTypeFontParameter();
+		fontParameter.size = 75;
+		roboto75 = fontGenerator.generateFont(fontParameter);
+		return roboto75;
 	}
 }
