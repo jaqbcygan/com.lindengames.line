@@ -25,7 +25,7 @@ public class SplashScreen extends ScreenAdapter {
         img = new Texture("logo_100.png");
 
         Table table = new Table();
-        table.setPosition(stage.getViewport().getScreenX() / 2, stage.getViewport().getScreenY() / 2 );
+        table.setPosition(viewport.getScreenWidth() / 2, viewport.getScreenHeight() / 2);
         table.setFillParent(true);
         stage.addActor(table);
 

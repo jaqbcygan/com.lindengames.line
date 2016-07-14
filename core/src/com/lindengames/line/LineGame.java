@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+import com.lindengames.line.screens.MainMenuScreen;
 import com.lindengames.line.screens.SplashScreen;
 import com.lindengames.line.utilities.Constants;
 
@@ -25,7 +26,7 @@ public class LineGame extends Game {
 		batch = new SpriteBatch();
 		Constants.SKIN.add("roboto40", createRoboto40Font());
 		Constants.SKIN.add("roboto75", createRoboto75Font());
-		setScreen(new SplashScreen(this));
+		setScreen(new MainMenuScreen(this));
 	}
 
 	@Override

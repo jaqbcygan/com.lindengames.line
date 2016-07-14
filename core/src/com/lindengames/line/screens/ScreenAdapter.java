@@ -17,7 +17,9 @@ public abstract class ScreenAdapter implements Screen {
 
     public ScreenAdapter(){
         camera = new OrthographicCamera();
+
         viewport = new ScreenViewport(camera);
+
         stage = new Stage(viewport);
         Gdx.input.setInputProcessor(stage);
     }
@@ -40,6 +42,7 @@ public abstract class ScreenAdapter implements Screen {
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height, true);
+
     }
 
     @Override
