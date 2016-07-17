@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
-import com.lindengames.line.screens.MainMenuScreen;
 import com.lindengames.line.screens.SplashScreen;
 import com.lindengames.line.utilities.Constants;
 
@@ -25,8 +24,8 @@ public class LineGame extends Game {
 	public void create() {
 		batch = new SpriteBatch();
 		Constants.SKIN.add("roboto40", createRoboto40Font());
-		Constants.SKIN.add("roboto75", createRoboto75Font());
-		setScreen(new MainMenuScreen(this));
+		Constants.SKIN.add("roboto90", createRoboto90Font());
+		setScreen(new SplashScreen(this));
 	}
 
 	@Override
@@ -67,12 +66,12 @@ public class LineGame extends Game {
 		roboto40 = fontGenerator.generateFont(fontParameter);
 		return roboto40;
 	}
-	public BitmapFont createRoboto75Font() {
-		BitmapFont roboto75 = null;
+	public BitmapFont createRoboto90Font() {
+		BitmapFont roboto90 = null;
 		FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator((Gdx.files.internal("roboto.ttf")));
 		FreeTypeFontParameter fontParameter = new FreeTypeFontParameter();
-		fontParameter.size = 75;
-		roboto75 = fontGenerator.generateFont(fontParameter);
-		return roboto75;
+		fontParameter.size = 90;
+		roboto90 = fontGenerator.generateFont(fontParameter);
+		return roboto90;
 	}
 }

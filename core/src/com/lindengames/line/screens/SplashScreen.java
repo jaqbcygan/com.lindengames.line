@@ -25,7 +25,7 @@ public class SplashScreen extends ScreenAdapter {
         img = new Texture("logo_100.png");
 
         Table table = new Table();
-        table.setPosition(viewport.getScreenWidth() / 2, viewport.getScreenHeight() / 2);
+        table.setPosition(stage.getViewport().getScreenX() / 2, stage.getViewport().getScreenY() / 2);
         table.setFillParent(true);
         stage.addActor(table);
 
@@ -67,6 +67,8 @@ public class SplashScreen extends ScreenAdapter {
 
     @Override
     public void resize(int width, int height) {
+        camera.position.set(width / 2, height / 2, 0);
+        viewport.update(width, height, true);
         super.resize(width, height);
     }
 

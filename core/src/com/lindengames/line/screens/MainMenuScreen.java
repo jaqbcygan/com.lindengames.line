@@ -1,9 +1,6 @@
 package com.lindengames.line.screens;
 
-
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.lindengames.line.LineGame;
@@ -15,11 +12,12 @@ public class MainMenuScreen extends ScreenAdapter {
 
     public MainMenuScreen(final LineGame game){
 
+
         this.game = game;
-        Label title = new Label(Constants.GAME_NAME, Constants.SKIN, "roboto75", new Color(.40f, .40f, .40f, 1));
+        Label title = new Label(Constants.GAME_NAME, Constants.SKIN, "roboto90", new Color(.40f, .40f, .40f, 1));
 
         Container<Label> titleContainer = new Container<Label>(title);
-        titleContainer.setPosition(stage.getViewport().getScreenWidth() / 2, stage.getViewport().getScreenHeight() - viewport.getScreenHeight() / 8);
+        titleContainer.setPosition(stage.getViewport().getScreenWidth() / 2, stage.getViewport().getScreenHeight() - viewport.getScreenHeight() / 5);
 
         stage.addActor(titleContainer);
 
@@ -28,12 +26,8 @@ public class MainMenuScreen extends ScreenAdapter {
 
         stage.addActor(childTable);
 
-        Texture playButtonTexture = new Texture("play_button.png");
-        Sprite playButtonSptite = new Sprite(playButtonTexture);
-        playButtonSptite.setColor(.40f, .40f, .40f, 0);
-
         Button button1 = new Button(Constants.SKIN);
-        ImageButton button2 = new ImageButton(playButtonTexture);
+        Button button2 = new Button(Constants.SKIN);
         Button button3 = new Button(Constants.SKIN);
 
         childTable.add(button1, button2, button3);
@@ -53,7 +47,8 @@ public class MainMenuScreen extends ScreenAdapter {
 
     @Override
     public void resize(int width, int height) {
-
+        camera.position.set(width / 2, height / 2, 0);
+        viewport.update(width, height, true);
         super.resize(width, height);
     }
 

@@ -42,7 +42,6 @@ public abstract class ScreenAdapter implements Screen {
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height, true);
-
     }
 
     @Override
