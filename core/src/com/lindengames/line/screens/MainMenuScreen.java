@@ -1,8 +1,11 @@
 package com.lindengames.line.screens;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.lindengames.line.LineGame;
 import com.lindengames.line.utilities.Constants;
 
@@ -26,11 +29,18 @@ public class MainMenuScreen extends ScreenAdapter {
 
         stage.addActor(childTable);
 
-        Button button1 = new Button(Constants.SKIN);
-        Button button2 = new Button(Constants.SKIN);
+        Sprite settingsButtonSprite = new Sprite(new Texture("settings_button.9.png"));
+        settingsButtonSprite.setSize(74, 74);
+        SpriteDrawable settingsButtonDrawable = new SpriteDrawable(settingsButtonSprite);
+
+        Sprite playButtonSprite = new Sprite(new Texture("play_button.9.png"));
+        SpriteDrawable playButtonDrawable = new SpriteDrawable(playButtonSprite);
+
+        ImageButton settingsButton = new ImageButton(settingsButtonDrawable);
+        ImageButton playButton = new ImageButton(playButtonDrawable);
         Button button3 = new Button(Constants.SKIN);
 
-        childTable.add(button1, button2, button3);
+        childTable.add(settingsButton, playButton, button3);
 
         stage.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(Constants.FADING_TIME)));
     }
