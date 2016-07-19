@@ -14,7 +14,6 @@ import com.lindengames.line.utilities.Constants;
 public class SplashScreen extends ScreenAdapter {
 
     private Texture img;
-    private Timer timer;
     private Task task;
 
     final LineGame game;
@@ -38,7 +37,6 @@ public class SplashScreen extends ScreenAdapter {
 
         stage.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(Constants.FADING_TIME)));
 
-        timer = new Timer();
         task = new Task() {
             @Override
             public void run() {
@@ -49,7 +47,6 @@ public class SplashScreen extends ScreenAdapter {
                         game.setScreen(new MainMenuScreen(game));
                     }
                 }, Constants.FADING_TIME);
-                // Fading time
             }
         };
         timer.scheduleTask(task, 2.5f);

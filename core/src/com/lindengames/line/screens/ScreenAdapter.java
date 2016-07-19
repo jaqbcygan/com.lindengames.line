@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -15,6 +16,8 @@ public abstract class ScreenAdapter implements Screen {
 
     Stage stage;
 
+    Timer timer;
+
     public ScreenAdapter(){
         camera = new OrthographicCamera();
 
@@ -22,6 +25,8 @@ public abstract class ScreenAdapter implements Screen {
 
         stage = new Stage(viewport);
         Gdx.input.setInputProcessor(stage);
+
+        timer = new Timer();
     }
 
     @Override
