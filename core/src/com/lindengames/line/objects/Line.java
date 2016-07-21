@@ -1,6 +1,13 @@
 package com.lindengames.line.objects;
 
+import com.badlogic.gdx.physics.box2d.World;
+
 public class Line {
 
-    World world = new World(new Vector2(0, -10), true);
+    private World world;
+
+    public Line(World world){
+        this.world = world;
+    }
 }
+
