@@ -16,7 +16,7 @@ public class GameScreen extends ScreenAdapter {
 
     public GameScreen(LineGame game){
         this.game = game;
-        world = new World(new Vector2(0, -10), false);
+        world = new World(new Vector2(0, 10), false);
         debugRenderer = new Box2DDebugRenderer();
         line = new Line(world);
     }
