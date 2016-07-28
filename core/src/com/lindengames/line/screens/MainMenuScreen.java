@@ -19,7 +19,7 @@ public class MainMenuScreen extends ScreenAdapter {
     public MainMenuScreen(final LineGame game){
 
         this.game = game;
-        Label title = new Label(Constants.GAME_NAME, Constants.SKIN, "roboto90", new Color(.40f, .40f, .40f, 0));
+        Label title = new Label(Constants.GAME_NAME, Constants.SKIN, "roboto90", new Color(.40f, .40f, .40f, 1));
 
         Container<Label> titleContainer = new Container<Label>(title);
         titleContainer.setPosition(stage.getViewport().getScreenWidth() / 2, stage.getViewport().getScreenHeight() - viewport.getScreenHeight() / 5);

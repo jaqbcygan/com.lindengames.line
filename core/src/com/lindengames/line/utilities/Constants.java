@@ -12,4 +12,6 @@ public class Constants {
     public static final String CO_NAME = "Linden Games";
     public static final String GAME_NAME = "Line";
     public static final float FADING_TIME = 1;
+    public static final int WORLD_HEIGHT = 100;
+    public static final int WORLD_WIDTH = 100;
 }
