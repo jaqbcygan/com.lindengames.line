@@ -22,14 +22,9 @@ public class MainMenuScreen extends ScreenAdapter {
         Label title = new Label(Constants.GAME_NAME, Constants.SKIN, "roboto90", new Color(.40f, .40f, .40f, 1));
 
         Container<Label> titleContainer = new Container<Label>(title);
-        titleContainer.setPosition(stage.getViewport().getScreenWidth() / 2, stage.getViewport().getScreenHeight() - viewport.getScreenHeight() / 5);
+        titleContainer.setPosition(stage.getViewport().getWorldWidth() / 2, stage.getViewport().getWorldHeight() - viewport.getWorldHeight() / 5);
 
         stage.addActor(titleContainer);
-
-        HorizontalGroup buttonsGroup = new HorizontalGroup();
-        buttonsGroup.setPosition(stage.getViewport().getScreenWidth() / 2, stage.getViewport().getScreenHeight() / 2);
-
-        stage.addActor(buttonsGroup);
 
         Sprite settingsButtonSprite = new Sprite(new Texture("settings_button.9.png"));
         settingsButtonSprite.setSize(74, 74);
@@ -53,10 +48,13 @@ public class MainMenuScreen extends ScreenAdapter {
                 }, Constants.FADING_TIME);
             }
         });
-
+        //---------------------------------------------------------------------------------------------------------
+        Container<ImageButton> btContainer = new Container<ImageButton>(playButton);
+        stage.addActor(btContainer);
+        btContainer.setPosition(stage.getViewport().getWorldWidth() / 2, stage.getViewport().getWorldHeight() / 2);
+        //---------------------------------------------------------------------------------------------------------
         Button button3 = new Button(Constants.SKIN);
 
-        buttonsGroup.addActor(playButton);
 
         stage.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(Constants.FADING_TIME)));
     }
@@ -72,10 +70,10 @@ public class MainMenuScreen extends ScreenAdapter {
     }
 
     @Override
-    public void resize(int width, int height) {
-        camera.position.set(width / 2, height / 2, 0);
-        viewport.update(width, height, true);
-        super.resize(width, height);
+    public void resize(int width, int height){
+        stage.getViewport().update(width, height, true);
+        stage.getViewport().apply(true);
+        stage.getViewport().getCamera().position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
     }
 
     @Override

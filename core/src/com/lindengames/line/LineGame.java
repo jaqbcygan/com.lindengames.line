@@ -14,7 +14,7 @@ import com.lindengames.line.utilities.Constants;
 
 public class LineGame extends Game {
 
-	SpriteBatch batch;
+	public SpriteBatch batch;
 
 	public LineGame() {
 		super();
