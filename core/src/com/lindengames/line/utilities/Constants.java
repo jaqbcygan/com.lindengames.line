@@ -14,4 +14,5 @@ public class Constants {
     public static final float FADING_TIME = 1;
     public static final int WORLD_HEIGHT = 100;
     public static final int WORLD_WIDTH = 100;
+    public static final World WORLD = new World(new Vector2(0, -10), true);
 }

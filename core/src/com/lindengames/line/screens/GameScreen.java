@@ -8,8 +8,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.lindengames.line.LineGame;
@@ -21,7 +19,9 @@ public class GameScreen extends ScreenAdapter {
     private final LineGame game;
     private Sprite bg;
     private Line line;
-    private World world;
+
+    public World world;
+
     private Box2DDebugRenderer debugRenderer;
 
     public GameScreen(LineGame game){
@@ -33,9 +33,8 @@ public class GameScreen extends ScreenAdapter {
         viewport = new StretchViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, camera);
         viewport.apply();
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
-        world = new World(new Vector2(0, -10), true);
         debugRenderer = new Box2DDebugRenderer();
-        line = new Line(world);
+        line = new Line();
         createLine();
     }
 
@@ -45,7 +44,6 @@ public class GameScreen extends ScreenAdapter {
         bodyDef.position.set(0, 0);
         bodyDef.type = BodyDef.BodyType.StaticBody;
 
-        EdgeShape edge = createLineEdge();
         ChainShape chain = createLineChain();
 
         FixtureDef fixtureDef = new FixtureDef();
@@ -54,13 +52,6 @@ public class GameScreen extends ScreenAdapter {
         Fixture fixture = world.createBody(bodyDef).createFixture(fixtureDef);
 
         chain.dispose();
-        edge.dispose();
-    }
-    public EdgeShape createLineEdge(){
-        EdgeShape edge = new EdgeShape();
-
-        edge.set(new Vector2(0, viewport.getWorldHeight() / 2), new Vector2(viewport.getWorldWidth() / 2, viewport.getWorldHeight() / 2));
-        return edge;
     }
 
     public ChainShape createLineChain(){
@@ -83,6 +74,14 @@ public class GameScreen extends ScreenAdapter {
         game.batch.end();
         world.step(1/60, 6, 2);
         debugRenderer.render(world, camera.combined);
+    }
+
+    public Viewport getViewport(){
+        return viewport;
+    }
+
+    public void setViewport(Viewport viewport){
+        this.viewport = viewport;
     }
 
 }
